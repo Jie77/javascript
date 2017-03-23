@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="snake"></div>
+<script type="text/javascript">
+/*
+	蛇形矩阵的实现
+	问题：
+	1：第27行使用while(count<n*n)会导致无限循环why
+	2：第48行注释部分一旦使用就报错why   答：数组越界
+
+*/
+	function snake(n){
+		var A = [];
+		for(var i=0;i<n;i++){
+			A[i] = [];
+			for(var j=0;j<n;j++){
+				A[i][j] = 0;
+			}
+		}
+		i=0;
+		j=0;
+		num =1;
+		var count=0;
+		for (count=0;count<n*n;){
+			while(A[i][j]==0&&j<n){
+				A[i][j] = num;
+				count++;
+				num++;
+				j++;
+			}
+			j--;
+			i++;
+			console.log(A[i][j]);
+		/*	for(;i<n;){
+				if (A[i][j]==0) {
+					A[i][j] = num;
+					count++;
+					num++;
+					i++;
+				}else{
+					break;
+				}
+			}*/
+			while(i<n&&A[i][j]==0){
+				A[i][j] = num;
+				count++;
+				num++;
+				i++;
+			}
+			i--;
+			j--;
+			console.log(A[i][j]+'-----'+i+'------'+j);
+			while(A[i][j]==0&&j>-1){
+				A[i][j] = num;
+				count++;
+				num++;
+				j--;
+			}
+			j++;
+			i--;
+			while(A[i][j]==0&&i>0){
+				A[i][j] = num;
+				count++;
+				num++;
+				i--;
+			}
+			i++;
+			j++;
+		}
+		var str = '';
+		for (i=0;i<n;i++){
+			for (j=0;j<n;j++){
+				str += A[i][j]+' ';
+			}
+			str += '<br>'
+		}
+		return str
+	}
+
+	document.getElementById('snake').innerHTML = snake(6);
+	
+</script>
+</body>
+</html>
