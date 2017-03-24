@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="out"></div>
+<div id="out1" style="margin-top: 20px"></div>
+<script type="text/javascript">
+	var Old = [],New = [];
+	var n = 5;
+	for (var i=0;i<n;i++){//初始化
+		Old[i] = [];
+		New[i] = [];
+		for(var j=0;j<n;j++){
+			Old[i][j] = Math.round(10*Math.random());
+			New[i][j] = 0;
+		}
+	}
+
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			New[i][j] = Old[j][i];
+		}
+	}
+	var t;
+	for(i=0;i<n/2;i++){
+		t = New[i];
+		New[i] = New[n-1-i];
+		New[n-1-i] = t;
+	}
+
+	var str = '';
+	for (i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			str += Old[i][j] + ' ';
+		}
+		str += "<br>";
+	}
+
+	var str1 = '';
+	for (i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			str1 += New[i][j] + ' ';
+		}
+		str1 += "<br>";
+	}
+
+	document.getElementById('out').innerHTML = str;
+	document.getElementById('out1').innerHTML = str1;
+
+
+</script>
+</body>
+</html>
