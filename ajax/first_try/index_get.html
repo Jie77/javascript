@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>first-try</title>
+	<script type="text/javascript">
+		var request = null;
+		function createRequest(){
+			try{
+				request = new XMLHttpRequest();
+			}catch(microsoft){
+				try{
+					request = new ActiveXObject("Msxm12.XMLHTTP");
+				}catch(other){
+					try{
+						request = new ActiveXObject("Microsoft.XMLHTTP");
+					}catch(failed){
+						request = null;
+					}
+				}
+			}
+			if(request == null){
+				alert("Error create request object");
+			}
+		}
+		createRequest();
+		function sendRequest(data){
+			request.open("get","display_get.php?value="+data,true);
+			request.onreadystatechange = getData;
+			request.send(null);
+		}
+		function getData(){
+			if(request.readyState == 4 && request.status == 200){
+				var serverText = request.responseText;
+				if(serverText.indexOf("|") != -1){
+					var ele = serverText.split('|');
+					document.getElementById(ele[0]).innerHTML = ele[1];
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<a href="$" onclick="sendRequest('contacts')"></a>
+	<div id="box"></div>
+</body>
+</html>

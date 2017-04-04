@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		var request = null;
+		try{
+			request = new XMLHttpRequest();
+		}catch(microsoft){
+			try{
+				request = new ActiveXObject("Msxm12.XMLHTTP");
+			}catch(other){
+				try{
+					request = new ActiveXObject("Microsoft.XMLHTTP");
+				}catch(failed){
+					request = null;
+				}
+			}
+		}
+		function sendRequest(data){
+			var bodyofrequest = getbody(data);
+			request.open("POST","display_post.php",true);
+
+			request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+			request.onreadystatechange = getData;
+			request.send(bodyofrequest);
+		}
+		function getbody(data){
+			var str = "value=";
+			str += encodeURIComponent(data);
+			return str;
+		}
+		function getData(){
+			if (request.status == 200 && request.readyState == 4){
+				var text = request.responseText;
+				if (text.indexOf('|')!=-1){
+					var ele = text.split("|");
+					document.getElementById(ele[0]).innerHTML = ele[1];
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<a href="#" onclick="sendRequest('contacts')">heheda</a>
+	<div id="box"></div>
+</body>
+</html>
