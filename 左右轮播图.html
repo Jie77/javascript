@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>左右轮播图</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+	.container{
+		width:600px;
+		margin:0 auto;
+		position:relative;
+		margin-top:300px;
+		height:200px;
+		overflow:hidden;
+	}
+	.left{
+		height:200px;
+		width:100px;
+		position:absolute;
+		left:0;
+		background:green;
+	}
+	.right{
+		height:200px;
+		width:100px;
+		position:absolute;
+		right:0;
+		background:green;
+	}
+	button{
+		display:block;
+		width:60px;
+		height:60px;
+		font-size:40px;
+		text-align:center;
+		line-height:60px;
+		margin:0 auto;
+		margin-top:70px;
+	}
+	ul{
+		display:block;
+		list-style:none;
+		height:200px;
+		width:2000px;
+		position:absolute;
+		left:-300px;
+	}
+	ul li{
+		display:block;
+		float:left;
+		width:20%;
+		height:100%;
+	}
+	ul li:nth-child(1){
+		background:blue;
+	}
+	ul li:nth-child(2){
+		background:red;
+	}
+	ul li:nth-child(3){
+		background:yellow;
+	}
+	ul li:nth-child(4){
+		background:blue;
+	}
+	ul li:nth-child(5){
+		background:red;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul id="pic">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="left" id="left">
+			<button><</button>
+		</div>
+		<div class="right" id="right">
+			<button>></button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var $ = function(id){
+			return document.getElementById(id);
+		}
+		$("left").onclick = function(){
+			var l = $("pic").offsetLeft - 400;
+			console.log(l);
+			if(l==-1500){
+				$("pic").style.transition = "all 0.2s ease-in-out";
+				$("pic").style.left = l+"px";
+				setTimeout(wait_l,200);
+			}else{
+				$("pic").style.transition = "all 0.2s ease-in-out";
+				$("pic").style.left = l+"px";
+			}	
+		}
+		function wait_l(){
+			$("pic").style.transition = "none";
+			$("pic").style.left = "-300px";
+		}
+		$("right").onclick = function(){
+			var l = $("pic").offsetLeft + 400;
+			console.log(l);
+			if(l==100){
+				$("pic").style.transition = "all 0.2s ease-in-out";
+				$("pic").style.left = l+"px";
+				setTimeout(wait_r,200);
+			}else{
+				$("pic").style.transition = "all 0.2s ease-in-out";
+				$("pic").style.left = l+"px";
+			}	
+		}
+		function wait_r(){
+			$("pic").style.transition = "none";
+			$("pic").style.left = "-1100px";
+		}
+	</script>
+</body>
+</html>
