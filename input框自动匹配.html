@@ -51,7 +51,22 @@
                     $("out").appendChild(li);
                 }
             }
+            var lis = document.getElementsByTagName('li');
+            console.log(lis);
+            for(var i=0;i<lis.length;i++){
+                lis[i].onclick = function(){
+                    $("in").value = this.innerText||this.textContent;
+                }
+                lis[i].onmouseover = function(){
+                    this.style.background = "#666";
+                }
+                lis[i].onmouseout = function(){
+                    this.style.background = "#fff";
+
+                }
+            }
         }
+
     </script>
 </body>
 </html>
