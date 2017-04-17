@@ -45,13 +45,31 @@ Sarray.prototype.insertSort = function(){//默认0号位置有序
 		this.nums[j] = tem;
 	}
 }
+function quickSort(arr){
+	if(arr.length==0){
+		return [];
+	}
+	var left = [];
+	var right = [];
+    var pivot = arr.splice(0,1)[0];
+	for(var i=0;i<arr.length;i++){
+		if(arr[i]<=pivot){
+			left.push(arr[i]);
+		}else{
+			right.push(arr[i]);
+		}
+	}
+	return quickSort(left).concat(pivot,quickSort(right));
+}
 var n=10000;
 var a = new Sarray(n);
 var b = new Sarray(n);
 var c = new Sarray(n);
+var d = new Sarray(n);
 a.init();
 b.init();
 c.init();
+d.init();
 var start = new Date().getTime();
 a.bubbleSort();
 var end = new Date().getTime();
@@ -64,3 +82,9 @@ start = new Date().getTime();
 c.insertSort();
 end = new Date().getTime();
 console.log("插入排序用时:"+(end-start)+"ms");
+start = new Date().getTime();
+quickSort(d.nums);
+end = new Date().getTime();
+console.log("快速排序用时:"+(end-start)+"ms");
+
+
