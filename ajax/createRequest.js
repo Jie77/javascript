@@ -4,7 +4,7 @@ function createRequest(){
 		request = new XMLHttpRequest();
 	}catch(trymicrosoft){
 		try{
-			request = new ActiveXObject("Msxm12.XMLHTTP");
+			request = new ActiveXObject("Msxml2.XMLHTTP");
 		}catch(othermicrosoft){
 			try{
 				request = new ActiveXObject("Microsoft.XMLHTTP");

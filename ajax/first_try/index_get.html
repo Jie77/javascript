@@ -9,7 +9,7 @@
 				request = new XMLHttpRequest();
 			}catch(microsoft){
 				try{
-					request = new ActiveXObject("Msxm12.XMLHTTP");
+					request = new ActiveXObject("Msxml2.XMLHTTP");
 				}catch(other){
 					try{
 						request = new ActiveXObject("Microsoft.XMLHTTP");
