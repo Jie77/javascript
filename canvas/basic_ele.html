@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>基本元素</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.container{
+			display:block;
+			width:500px;
+			margin:0 auto;
+			margin-top:100px;
+		}
+		#canvas{
+			box-shadow:0 0 2px #666;
+		}
+	</style>
+	<script type="text/javascript">
+		var eventUtil = {
+			addHandler:function(ele,type,handler){
+				if(ele.addEventListener){
+					ele.addEventListener(type,handler,false);
+				}else if(ele.attachEvent){
+					ele.attachEvent("on"+type,handler);
+				}else{
+					ele["on"+type] = handler;
+				}
+			},
+			removeHandler:function(ele,type,handler){
+				if(ele.removeEventListener){
+					ele.removeEventListener(type,handler,false);
+				}else if(ele.detachEvent){
+					ele.detachEvent("on"+type,handler);
+				}else{
+					ele["on"+type] = null;
+				}
+			}
+		};
+
+		eventUtil.addHandler(window,'load',function(){
+			canvasApp();
+		});
+
+		function canvasApp(){
+			var theCanvas = document.getElementById('canvas');
+			var context = theCanvas.getContext('2d');
+			drawScreen();
+			function drawScreen(){
+				//基本矩形
+				context.fillStyle = "#35F048";
+				context.strokeStyle = "#08E2D7";
+				context.lineWidth = 2;
+				context.fillRect(10,10,40,40);
+				context.strokeRect(0,0,60,60);
+				context.clearRect(20,20,20,20);
+
+				//基本线段
+				context.strokeStyle = "#555151";
+				context.lineWidth = 10;
+				context.lineJoin = "bevel";
+				context.lineCap = "round";
+				context.beginPath();
+				context.lineTo(70,10);
+				context.lineTo(95,10);
+				context.lineTo(95,40);
+				context.stroke();
+				context.closePath();
+
+				context.strokeStyle = "#555151";
+				context.lineWidth = 10;
+				context.lineJoin = "round";
+				context.lineCap = "butt";
+				context.beginPath();
+				context.lineTo(115,10);
+				context.lineTo(140,10);
+				context.lineTo(140,40);
+				context.stroke();
+				context.closePath();
+
+				//圆
+				context.lineWidth = 2;
+				context.strokeStyle = "#DB45F2";
+				context.beginPath();
+				context.arc(200,32,30,(Math.PI/180)*0,(Math.PI/180)*360,false);
+				context.stroke();
+				context.closePath();
+
+				context.lineWidth = 2;
+				context.strokeStyle = "#DB45F2";
+				context.beginPath();
+				context.moveTo(260,32);
+				context.arc(260,32,30,(Math.PI/180)*0,(Math.PI/180)*90,false);
+				context.lineTo(260,32);
+				context.stroke();
+				context.closePath();
+
+				context.lineWidth = 2;
+				context.strokeStyle = "#DB45F2";
+				context.fillStyle = "#0EE728";
+				context.beginPath();
+				context.moveTo(360,32);
+				context.arc(360,32,30,(Math.PI/180)*0,(Math.PI/180)*90,false);
+				context.lineTo(360,32);
+				context.stroke();
+				context.fill();
+				context.closePath();
+
+				context.lineWidth = 2;
+				context.strokeStyle = "#E734F5";
+				context.fillStyle = "#2EF57E";
+				context.beginPath();
+				context.moveTo(360,32);
+				context.arc(360,32,30,(Math.PI/180)*90,(Math.PI/180)*160,false);
+				context.lineTo(360,32);
+				context.stroke();
+				context.fill();
+				context.closePath();
+
+			}
+		}
+
+	</script>
+</head>
+<body>
+<div class="container">
+	<canvas id="canvas" width="500px" height="500px">your Brower don't support canvas</canvas>
+</div>
+</body>
+</html>
