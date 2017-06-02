@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>transform</title>
+	<style type="text/css">
+		.container{
+			width:500px;
+			box-shadow:0 0 2px #666;
+			margin:0 auto;
+			margin-top:100px;
+		}
+	</style>
+	<script type="text/javascript">
+		var eventUtil = {
+			addHandler:function(ele,type,handler){
+				if(ele.addEventListener){
+					ele.addEventListener(type,handler,false);
+				}else if(ele.attachEvent){
+					ele.attachEvent("on"+type,handler);
+				}else{
+					ele["on"+type] = handler;
+				}
+			},
+
+			removeHandler:function(ele,type,handler){
+				if(ele.removeEventListener){
+					ele.removeEvnetListener(type,handler,false);
+				}else if(ele.detachEvent){
+					ele.detachEvent("on"+type,handler);
+				}else{
+					ele["on"+type] = null;
+				}
+			}
+		}
+		eventUtil.addHandler(window,"load",function(){
+			canvasApp();
+		});
+
+		function canvasApp(){
+			var can = document.getElementById('canvas');
+			var context = can.getContext('2d');
+			var time = 0;
+			setInterval(drawScreen,100);
+			function drawScreen(){
+				var x=100,y=100,width=50,height=50;
+				context.clearRect(-0.5*width,-0.5*height,width,height);
+				context.fillStyle = "red";
+				context.setTransform(1,0,0,1,0,0);
+				context.translate(x+0.5*width,y+0.5*height);
+				context.rotate(time*Math.PI/180);
+				context.fillRect(-0.5*width,-0.5*height,width,height);
+				time++;
+			}
+		}
+	</script>
+</head>
+<body>
+<div class="container">
+	<canvas id="canvas" width="500" height="500"></canvas>
+</div>
+</body>
+</html>
