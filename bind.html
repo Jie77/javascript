@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bind</title>
+</head>
+<body>
+<button id="btn"> click me </button>
+</body>
+<script type="text/javascript">
+	var EventUtil = {
+		addHandler:function(ele,type,handler){
+			if(ele.addEventListener){
+				ele.addEventListener(type,handler,false);
+			}else if(ele.attachEvent){
+				ele.attachEvent("on"+type,handler);
+			}else{
+				ele["on"+type] = handler;
+			}
+		},
+		removeHandler:function(ele,type,handler){
+			if(ele.removeEventListener){
+				ele.removeEventListener(type,handler,false);
+			}else if(ele.detachEvent){
+				ele.detachEvent("on"+type,handler);
+			}else{
+				ele["on"+type] = null;
+			}
+		}
+	}
+
+	var handler = {
+		message:"event handler",
+		handleClick:function(event){
+			console.log(this.message+":"+event.type);
+		}
+	}
+
+	var btn = document.getElementById('btn');
+
+	/*EventUtil.addHandler(btn,'click',function(event){
+		handler.handleClick(event);
+	});*/
+
+	/* bind(fn,context){
+		return function(){
+			return fn.apply(context,arguments);
+		}
+	}*/
+
+	EventUtil.addHandler(btn,'click',handler.handleClick.bind(handler));
+</script>
+</html>
