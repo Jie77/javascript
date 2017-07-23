@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<input type="file" id="file">
+<button id="upload">上传</button>
+</body>
+<script type="text/javascript">
+var file = document.querySelector('#file');
+var upload = document.querySelector('#upload');
+var xhr = new XMLHttpRequest();
+upload.addEventListener('click', uploadFile, false);
+function uploadFile(){
+	var formData = new FormData();
+	formData.append('image_file',file.files[0]);
+	formData.append('api_key','n303kG3cdv43J8RuJ5nt5H7hU3IAZWhU');
+	formData.append('api_secret','grl4t7FC9R6-JsTIFZ-rps9xjN_VKT3_');
+	formData.append('return_landmark',1);
+	console.log(formData);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			
+			/*var body = JSON.parse(xhr.responseText);
+			console.log(body.faces[0].landmark.contour_left1.x+" --- "+body.faces[0].landmark.contour_left1.y+" --- "+body.faces[0].landmark.contour_right1.x+" --- "+body.faces[0].landmark.contour_right1.y);*/
+			console.log(xhr.responseText);
+		}
+	}
+	xhr.open('post','http://119.29.249.88:3000',true);
+	xhr.send(formData);
+}
+
+</script>
+</html>
+
+
