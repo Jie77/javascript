@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div{
+			margin:0 auto;
+		}
+		table{
+			border-bottom:1px solid #666;
+			border-right:1px solid #666;
+		}
+		th,td{
+			width:100px;
+			height:60px;
+			text-align:center;
+			border-top:1px solid #666;
+			border-left:1px solid #666;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<table cellspacing="0">
+			<tr>
+				<th>全选<input type="checkbox" name="" id="choose-all"></th>
+				<th>菜单</th>
+				<th>价格</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+	var chooseAll = document.getElementById('choose-all');
+	var inp = document.getElementsByTagName('input');
+	//这种方法太麻烦,使用check可以免除状态转换问题
+	// flag = true
+	// chooseAll.onclick = function(){
+	// 	this.checked = flag;
+	// 	if(flag){
+	// 		for(var i=1;i<inp.length;i++){
+	// 			inp[i].checked = true;
+	// 		}
+	// 	}else{
+	// 		for(var i=1;i<inp.length;i++){
+	// 			inp[i].checked = false;
+	// 		}
+	// 	}
+	// 	flag = !flag;
+	// }
+	chooseAll.onclick = function(){
+		for(var i=1;i<inp.length;i++){
+			inp[i].checked = this.checked;
+		}
+	}
+	for(var i=1;i<inp.length;i++){
+		inp[i].onclick = function(){
+			var flag = true;
+			for(var j=1;j<inp.length;j++){
+				if(inp[j].checked == false){
+					flag = false;
+				}
+			}
+			inp[0].checked = flag;
+		}
+	}
+</script>
+</html>

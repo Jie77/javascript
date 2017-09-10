@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		label{
+			position:absolute;
+			top:2px;
+			left:56px;
+			color:#666;
+			cursor:text;
+		}
+		.la{
+			position:relative;
+		}
+		input{
+			color:#666;
+		}
+	</style>
+</head>
+<body>
+	哈哈:<input type="text" name="haha" value="哈哈" id="inp">
+	<div class="la">
+		hello:<label id="lab" for="inp1">hello world</label> <input type="text" id="inp1">
+	</div>
+	placeholder:<input type="text" name="" placeholder="注意兼容性">
+</body>
+<script type="text/javascript">
+	var inp = document.getElementById('inp');
+	inp.onfocus = function(){
+		if(this.value == "哈哈"){
+			inp.value = "";
+		}
+	}
+	inp.onblur = function(){
+		if(this.value == ""){
+			inp.value = "哈哈"
+		}
+	}
+	var inp1 = document.getElementById('inp1');
+	inp1.focus();
+	var lab = document.getElementById('lab');
+	inp1.oninput = function(){
+		if(this.value == ""){
+			lab.style.display = "block";
+		}else{
+			lab.style.display = "none";
+		}
+	}
+</script>
+</html>
