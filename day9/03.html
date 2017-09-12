@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.container{
+			width:600px;
+			margin:0 auto;
+			margin-top:15%;
+			background-color:#CFCACA;
+		}
+		ul{
+			width:100%;
+		}
+		ul li{
+			width:25%;
+			height:40px;
+			font-size:20px;
+			line-height:40px;
+			text-align:center;
+			list-style:none;
+			float:left;
+			background:#33B6F7;
+		}
+		#box{
+			height:300px;
+			font-size:100px;
+			line-height:300px;
+			text-align:center;
+			font-weight:bold;
+		}
+		.change{
+			background:#33F269;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<ul>
+		<li>吃</li>
+		<li>喝</li>
+		<li>玩</li>
+		<li>乐</li>
+	</ul>
+	<div id="box"></div>
+</div>
+</body>
+<script type="text/javascript">
+	var lis = document.getElementsByTagName('li');
+	var box = document.getElementById('box');
+	for (i=0;i<lis.length;i++){
+		lis[i].onmouseover = function(){
+			this.setAttribute('class','change');
+			box.setAttribute('class','change');
+			box.innerText = this.innerText;
+
+		}
+		lis[i].onmouseout = function(){
+			this.removeAttribute('class','change');
+			box.removeAttribute('class','change');
+			box.innerText = '';
+		}
+	}
+</script>
+</html>
