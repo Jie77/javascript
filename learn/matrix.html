@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		img{
+			display:block;
+			transition:all 1s ease-in-out;
+		}
+		img:hover{
+			transform-origin:0 0;
+			transform:scale(0,0);
+		}
+		.clear{
+			display:table;
+			content:'';
+			clear:both;
+		}
+		.box{
+			width:100px;
+			height:100px;
+			background:#63F27D;
+			transform-origin:0 0;
+			line-height:100px;
+			text-align:center;
+			margin-top:100px;
+			margin-left:80px;
+			transition:all 0.5s;
+			float:left;
+		}
+		.num1:hover{
+			transform:translate(30px,60px);
+		}
+		.num2:hover{
+			transform:matrix(1,0,0,1,30,60);
+		}
+		.num3:hover{
+			transform:scale(1.2,1.5);
+		}
+		.num4:hover{
+			transform:matrix(1.2,0,0,1.5,0,0);
+		}
+		.num5:hover{
+			transform:rotate(30deg);
+		}
+		.num6:hover{
+			transform:matrix(0.866025,0.500000,-0.500000,0.866025,0,0);
+		}
+		.num7:hover{
+			transform:skew(25deg,25deg);
+		}
+		.num8:hover{
+			transform:matrix(1,0.466308,0.466308,1,0,0);
+		}
+		.box1{
+			margin-left:100px;
+			margin-top:100px;
+			transform-style:preserve-3d;
+			transform: matrix3d(0.47147, -0.36338, 0, -0.00034, -0.25765, 1.33027, 0, -0.00012, 0, 0, 1, 0, 543, 214, 0, 1);
+		}
+		.box2{
+			margin-left:100px;
+			margin-top:100px;
+			transform-style:preserve-3d;
+			transform: skew(-11deg,-27deg) rotateY(53deg) scale(1.2)
+		}
+		.box3{
+			margin-left:100px;
+			margin-top:100px;
+			transform-style:preserve-3d;
+			transform:skew(-17deg,-20deg) rotateY(45deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="dog">
+		<img src="./image/dog.jpg">
+	</div>
+	<div class="box num1">translate(30px,60px)</div>
+	<div class="box num2">matrix(1,0,0,1,30,60)</div>
+	<div class="box num3">transform:scale(1.2,1.5)</div>
+	<div class="box num4">transform:matrix(1.2,0,0,1.5,0,0)</div>
+	<div class="clear"></div>
+	<div class="box num5">rotate(30deg)</div>
+	<div class="box num6">matrix(0.866025,0.500000,-0.500000,0.866025,0,0)</div><!--matrix(cosθ,sinθ,-sinθ,cosθ,0,0)-->
+	<div class="box num7">skew(25deg,25deg)</div>
+	<div class="box num8">matrix(1,0.466308,0.466308,1,0,0)</div>
+	<div class="clear"></div>
+	<div class="container">
+		<img class="box1" src="./image/dog.jpg">
+		<img class="box2" src="./image/dog.jpg">
+		<img class="box3" src="./image/dog.jpg">
+	</div>
+		
+</body>
+</html>
