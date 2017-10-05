@@ -96,17 +96,19 @@
 	<script type="text/javascript">
 		var boxs = document.querySelectorAll('.tran')
 		var con = document.querySelector('.container')
-		
+		window.onload = function(){
+			boxs[0].className = "tran is-visible"
+		}
 		
         window.onscroll = function() {
-            var seeHeight = document.documentElement.clientHeight;
-            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-            var n=0
-            console.log(seeHeight + scrollTop)
+            var seeHeight = document.documentElement.clientHeight
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+            var n=1
+            //console.log(seeHeight + scrollTop)
             for (var i = n; i < boxs.length; i++) {
                 if (boxs[i].offsetTop < seeHeight + scrollTop) {
-                   boxs[i].className = "tran is-visible"
-                    n = i + 1;
+                	boxs[i].className = "tran is-visible"
+                	n = i + 1
                 }
             }
         };
