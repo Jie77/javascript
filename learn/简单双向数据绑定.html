@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简单双向数据绑定</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+</head>
+<body>
+	<input type="text" name="content">
+	<span>{{ text }}</span>
+	<script type="text/javascript">
+		var obj = {}
+		Object.defineProperty(obj,"text",{
+			set:function(val){
+				document.getElementsByTagName('span')[0].innerHTML = val;
+			}
+		})
+
+		document.getElementsByTagName('input')[0].onkeyup = function(){
+			obj.text = this.value
+		}
+
+	</script>
+</body>
+</html>
